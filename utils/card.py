@@ -7,7 +7,10 @@ class Symbol:
         :icon: card's suit, one of ♥ ♦ ♣ ♠
         :color: The symbol's color; 'red' or 'black'. If not specified, it is inferred from icon
         """
-        self.icon = icon
+        if icon in ["♥", "♦", "♣", "♠"]:
+            self.icon = icon
+        else:
+            raise AttributeError("icon not a valid option")
         # Automatic selection of color based on icon
         if color is None:
             if icon in ["♣", "♠"]:
@@ -15,7 +18,10 @@ class Symbol:
             elif icon in ["♥", "♦"]:
                 self.color = "red"
         else:
-            self.color = "color"
+            if color in ["black", "red"]:
+                self.color = "color"
+            else:
+                raise AttributeError("color must be 'black' or 'red'.")
 
     def __str__(self) -> str:
         return self.icon
@@ -47,7 +53,11 @@ class Card(Symbol):
         :color: color of card's symbol, one of "red", "black". If not specified, inferred from icon.
         """
         super().__init__(icon, color)
-        self.value = value
+
+        if value in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
+            self.value = value
+        else:
+            raise AttributeError("Card value is not valid.")
 
     def __str__(self) -> str:
         return super().__str__() + self.value
