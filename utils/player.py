@@ -1,5 +1,6 @@
 from card import Card
 from random import choice as random_choice
+from typing import List
 
 
 class Player:
@@ -7,11 +8,11 @@ class Player:
 
     player_count = 1  # player counter, starting at 1 because humans
 
-    def __init__(self, cards: list, name: str = ""):
+    def __init__(self, cards: List[Card], name: str = ""):
         """Create a new player.
 
-        :cards: List of card.Card instances; the player's hand.
-        :name: Player's name (optional).
+        :param cards: List of card.Card instances; the player's hand.
+        :param name: Player's name (optional, if empty → 'Player n').
         """
 
         self.cards = cards
@@ -27,6 +28,8 @@ class Player:
         """Play a turn. This method will return a random card from the player's hand, which is then added to the history and removed from the hand.
         A summary will be printed, in the form:
         {PLAYER'S NAME} ({TURN}) played: ({CARD COUNT}) {CARD}
+
+        :return: A Card instance, the card that is played in this turn.
         """
 
         picked_card = random_choice(self.cards)
@@ -41,10 +44,36 @@ class Player:
         return picked_card
 
     def __str__(self) -> str:
+        """If name is set, returns name, else this returns 'Player N'"""
         if self.name:
             return self.name
         else:
             return f"Player {self.player_number}"
+
+
+class Deck:
+    """A deck of cards."""
+
+    def __init__(self, cards: List[Card] = []):
+        self.cards = cards
+
+    def __str__(self) -> str:
+        return "Deck [" + ", ".join([str(card) for card in self.cards]) + "]"
+
+    def fill_deck(self):
+        """Fills cards with a complete deck of 52 cards."""
+        pass
+
+    def shuffle(self):
+        """Shuffle the cards in the deck."""
+        pass
+
+    def distribute(self, players: List(Player)):
+        """Distrubutes the deck of cards between a given list of players.
+
+        :param players: [description]   
+        """
+        pass
 
 
 # testing

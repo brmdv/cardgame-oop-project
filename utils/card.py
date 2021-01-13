@@ -4,8 +4,8 @@ class Symbol:
     def __init__(self, icon: str, color: str = None):
         """Initialize a card suit.
 
-        :icon: card's suit, one of ♥ ♦ ♣ ♠
-        :color: The symbol's color; 'red' or 'black'. If not specified, it is inferred from icon
+        :param icon: card's suit, one of ♥ ♦ ♣ ♠
+        :param color: The symbol's color; 'red' or 'black'. If not specified, it is inferred from icon
         """
         if icon in ["♥", "♦", "♣", "♠"]:
             self.icon = icon
@@ -30,7 +30,8 @@ class Symbol:
     def suit_from_name(name: str) -> str:
         """A static method that converts the english name of a playing card suit to its corresponding Unicode symbol.
 
-        :name: Name of suit, one of heart diamond club spade.
+        :param name: Name of suit, one of heart diamond club spade.
+        :return: A string which contains the correct Unicode character.
         """
         # Lookup dictionary
         names = {"heart": "♥", "diamond": "♦", "club": "♣", "spade": "♠"}
@@ -48,9 +49,9 @@ class Card(Symbol):
     def __init__(self, icon: str, value: str, color: str = None):
         """Create new Card.
 
-        :icon: card's suit, one of ♥ ♦ ♣ ♠
-        :value: value of card, one of A 2 3 4 5 6 7 8 9 10 J Q K
-        :color: color of card's symbol, one of "red", "black". If not specified, inferred from icon.
+        :param icon: card's suit, one of ♥ ♦ ♣ ♠
+        :param value: value of card, one of A 2 3 4 5 6 7 8 9 10 J Q K
+        :param color: color of card's symbol, one of "red", "black". If not specified, inferred from icon.
         """
         super().__init__(icon, color)
 
