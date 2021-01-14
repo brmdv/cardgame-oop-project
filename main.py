@@ -20,6 +20,7 @@ theano = [
     "Vincent",
 ]
 number_of_players = 4
+# select player names randomly
 my_players = [Player(name=name) for name in sample(theano, k=number_of_players)]
 print("The players are " + ", ".join(str(player) for player in my_players))
 

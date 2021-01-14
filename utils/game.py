@@ -64,3 +64,9 @@ class Board:
             print(f"\t{len(self.history_cards)} cards played before this turn.")
             print("")  # print empty line for readabilty
             self.turn_count += 1
+
+    def __str__(self) -> str:
+        """
+        :return: 'Board (N players, M turns)'
+        """
+        return f"Board ({len(self.players)} players, {self.turn_count} turns)"

@@ -59,7 +59,7 @@ class Deck:
     """A deck of cards."""
 
     def __init__(self, cards: List[Card] = None):
-        """Create a new deck of cards. Empty by default, but can be initialaized
+        """Create a new deck of cards. Empty by default, but can be initialized
         with a starting hand.
 
         :param cards: Optional list of Card objects to start with.
@@ -72,10 +72,15 @@ class Deck:
             self.cards = []
 
     def __str__(self) -> str:
+        """
+        :return: String with representation of every card in the deck.
+        """
         return "Deck [" + ", ".join([str(card) for card in self.cards]) + "]"
 
     def fill_deck(self):
-        """Fills cards with a complete deck of 52 cards. This replaces all cards already in the deck, so be careful."""
+        """Fills cards with a complete deck of 52 cards. This replaces all cards
+        already in the deck, so be careful."""
+
         self.cards = [
             Card(icon, value)
             for icon in ["♥", "♦", "♣", "♠"]
