@@ -8,17 +8,20 @@ class Player:
 
     player_count = 1  # player counter, starting at 1 because humans
 
-    def __init__(self, name: str = ""):
+    def __init__(self, name: str = "", cards: List[Card] = None):
         """Create a new player.
 
         :param cards: List of Card instances; the player's hand.
         :param name: Player's name (optional, if empty → 'Player n').
         """
-
-        self.cards = []
+        self.cards: List[Card]
+        if cards is not None:
+            self.cards = cards
+        else:
+            self.cards = []
         self.turn_count = 0
         self.number_of_cards = 0
-        self.history = []
+        self.history: List[Card] = []
         self.name = name
         # Assign autoincrementing player number
         self.player_number = Player.player_count
@@ -54,8 +57,17 @@ class Player:
 class Deck:
     """A deck of cards."""
 
-    def __init__(self, cards: List[Card] = []):
-        self.cards = cards
+    def __init__(self, cards: List[Card] = None):
+        """Create a new deck of cards. Empty by default, but can be initialaized with a starting hand.
+
+        :param cards: Optional list of Card objects to start with.
+        """
+
+        self.cards: List[Card]
+        if cards is not None:
+            self.cards = cards
+        else:
+            self.cards = []
 
     def __str__(self) -> str:
         return "Deck [" + ", ".join([str(card) for card in self.cards]) + "]"
