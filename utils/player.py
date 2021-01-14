@@ -1,5 +1,5 @@
 from card import Card
-from random import choice as random_choice
+from random import choice, shuffle
 from typing import List
 
 
@@ -8,14 +8,14 @@ class Player:
 
     player_count = 1  # player counter, starting at 1 because humans
 
-    def __init__(self, cards: List[Card], name: str = ""):
+    def __init__(self, name: str = ""):
         """Create a new player.
 
-        :param cards: List of card.Card instances; the player's hand.
+        :param cards: List of Card instances; the player's hand.
         :param name: Player's name (optional, if empty → 'Player n').
         """
 
-        self.cards = cards
+        self.cards = []
         self.turn_count = 0
         self.number_of_cards = 0
         self.history = []
@@ -32,7 +32,7 @@ class Player:
         :return: A Card instance, the card that is played in this turn.
         """
 
-        picked_card = random_choice(self.cards)
+        picked_card = choice(self.cards)
         self.history.append(picked_card)
         print(
             f"{str(self)} ({self.turn_count}) played: ({self.number_of_cards}) {str(picked_card)}"
@@ -61,28 +61,61 @@ class Deck:
         return "Deck [" + ", ".join([str(card) for card in self.cards]) + "]"
 
     def fill_deck(self):
-        """Fills cards with a complete deck of 52 cards."""
-        pass
+        """Fills cards with a complete deck of 52 cards. This replaces all cards already in the deck, so be careful."""
+        self.cards = [
+            Card(icon, value)
+            for icon in ["♥", "♦", "♣", "♠"]
+            for value in [
+                "A",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "J",
+                "Q",
+                "K",
+            ]
+        ]
 
     def shuffle(self):
-        """Shuffle the cards in the deck."""
-        pass
+        """Shuffles all the cards in the deck."""
+        shuffle(self.cards)
 
-    def distribute(self, players: List(Player)):
-        """Distrubutes the deck of cards between a given list of players.
+    def distribute(self, players: List[Player]):
+        """Distributes the deck of cards between a given list of players. This happens in a one by one way, until all cards are used. The cards are moved from this deck to the players, so this function empties the deck.
 
-        :param players: [description]   
+        :param players: List of Player instances that get the cards.
         """
-        pass
+        player_idx = 0
+        # Loop over the deck, giving every card to alternating players
+        while len(self.cards) > 0:
+            # move last card in deck to current player in list
+            picked_card = self.cards.pop()
+            players[player_idx].cards.append(picked_card)
+            # loop index over players
+            player_idx = (player_idx + 1) % len(players)
 
 
 # testing
 # test_player1 = Player([Card("♥", "8"), Card("♣", "J")])
 # test_player2 = Player([Card("♥", "A"), Card("♣", "10")], name="Bram")
-# print(str(test_player1))
-# print(str(test_player2))
 # test_player1.play()
 # test_player2.play()
 # test_player2.play()
-# help(Player)
-# pass
+
+test_player1 = Player()
+test_player2 = Player(name="Bram")
+print(str(test_player1))
+print(str(test_player2))
+test_deck = Deck()
+test_deck.fill_deck()
+print(test_deck)
+# test_deck.shuffle()
+# print(test_deck)
+test_deck.distribute([test_player1, test_player2])
+pass
