@@ -26,12 +26,35 @@ class Board:
         # Create or reuse deck
         self.deck: Deck = Deck() if deck is None else deck
 
-        def start_game(self):
-            """"""
-            # if deck is empty, fill and shuffle
-            if len(self.deck.cards) == 0:
-                self.deck.fill_deck()
-                self.deck.shuffle()
+    def start_game(self):
+        """"""
+        # if deck is empty, fill and shuffle
+        if len(self.deck.cards) == 0:
+            self.deck.fill_deck()
+            self.deck.shuffle()
 
-            # Distribute cards
-            self.deck.distribute(self.players)
+        # Distribute cards
+        self.deck.distribute(self.players)
+
+        # Game playing
+        # Play game as long as any player has any cards left
+        while any([len(player.cards) > 0 for player in self.players]):
+
+            for current_player in self.players:
+                # Update history with previous turn
+                if self.active_cards[current_player] is not None:
+                    self.history_cards.append(self.active_cards[current_player])
+                # if player has no cards anymore, end turn
+                if len(current_player.cards) == 0:
+                    continue
+                # play new card
+                current_card = current_player.play()
+                self.active_cards[current_player] = current_card
+
+            # end of turn bookkeeping
+            print(f"Turn {self.turn_count:>2d} done:")
+            print(
+                f"\tActive cards: {', '.join([str(card) for card in self.active_cards.values()])}"
+            )
+            print(f"\t{len(self.history_cards)} cards played in game.")
+            self.turn_count += 1
