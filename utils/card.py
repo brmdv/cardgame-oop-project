@@ -65,12 +65,3 @@ class Card(Symbol):
 
     def __repr__(self) -> str:
         return f"<Card {super().__str__()}{self.value} {id(self)}>"
-
-
-# testing
-# test_symbol = Symbol(Symbol.suit_from_name("heart"))
-# test_card = Card(Symbol.suit_from_name("spades"), "A")
-# # testKaart = Card("red", Card.suit_from_name("spade"), "11")
-# print(str(test_symbol))
-# print(str(test_card))
-# pass

@@ -99,23 +99,3 @@ class Deck:
             players[player_idx].cards.append(picked_card)
             # loop index over players
             player_idx = (player_idx + 1) % len(players)
-
-
-# testing
-# test_player1 = Player([Card("♥", "8"), Card("♣", "J")])
-# test_player2 = Player([Card("♥", "A"), Card("♣", "10")], name="Bram")
-# test_player1.play()
-# test_player2.play()
-# test_player2.play()
-
-test_player1 = Player()
-test_player2 = Player(name="Bram")
-print(str(test_player1))
-print(str(test_player2))
-test_deck = Deck()
-test_deck.fill_deck()
-print(test_deck)
-# test_deck.shuffle()
-# print(test_deck)
-test_deck.distribute([test_player1, test_player2])
-pass
