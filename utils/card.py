@@ -28,7 +28,8 @@ class Symbol:
 
     @staticmethod
     def suit_from_name(name: str) -> str:
-        """A static method that converts the english name of a playing card suit to its corresponding Unicode symbol.
+        """A static method that converts the english name of a playing card suit
+        to its corresponding Unicode symbol.
 
         :param name: Name of suit, one of heart diamond club spade.
         :return: A string which contains the correct Unicode character.

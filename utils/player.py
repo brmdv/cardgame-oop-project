@@ -28,8 +28,9 @@ class Player:
         Player.player_count += 1
 
     def play(self) -> Card:
-        """Play a turn. This method will return a random card from the player's hand, which is then added to the history and removed from the hand.
-        A summary will be printed, in the form:
+        """Play a turn. This method will return a random card from the player's
+        hand, which is then added to the history and removed from the hand. A
+        summary will be printed, in the form:
         {PLAYER'S NAME} ({TURN}) played: ({CARD COUNT}) {CARD}
 
         :return: A Card instance, the card that is played in this turn.
@@ -58,7 +59,8 @@ class Deck:
     """A deck of cards."""
 
     def __init__(self, cards: List[Card] = None):
-        """Create a new deck of cards. Empty by default, but can be initialaized with a starting hand.
+        """Create a new deck of cards. Empty by default, but can be initialaized
+        with a starting hand.
 
         :param cards: Optional list of Card objects to start with.
         """
@@ -99,7 +101,9 @@ class Deck:
         shuffle(self.cards)
 
     def distribute(self, players: List[Player]):
-        """Distributes the deck of cards between a given list of players. This happens in a one by one way, until all cards are used. The cards are moved from this deck to the players, so this function empties the deck.
+        """Distributes the deck of cards between a given list of players. This
+        happens in a one by one way, until all cards are used. The cards are
+        moved from this deck to the players, so this function empties the deck.
 
         :param players: List of Player instances that get the cards.
         """
