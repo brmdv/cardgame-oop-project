@@ -27,7 +27,12 @@ class Board:
         self.deck: Deck = Deck() if deck is None else deck
 
     def start_game(self):
-        """"""
+        """Start and play a new game. If the internal Deck is empty, a new one
+        will be created and shuffled. The deck is distributed over all players.
+        Then every player plays in turns until all cards are used. A summary of
+        every turn is printed.
+        """
+
         # if deck is empty, fill and shuffle
         if len(self.deck.cards) == 0:
             self.deck.fill_deck()
@@ -56,5 +61,6 @@ class Board:
             print(
                 f"\tActive cards: {', '.join([str(card) for card in self.active_cards.values()])}"
             )
-            print(f"\t{len(self.history_cards)} cards played in game.")
+            print(f"\t{len(self.history_cards)} cards played before this turn.")
+            print("")  # print empty line for readabilty
             self.turn_count += 1
