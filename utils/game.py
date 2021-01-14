@@ -57,7 +57,7 @@ class Board:
                 self.active_cards[current_player] = current_card
 
             # end of turn bookkeeping
-            print(f"Turn {self.turn_count:>2d} done:")
+            print(f"Turn {self.turn_count} done:")
             print(
                 f"\tActive cards: {', '.join([str(card) for card in self.active_cards.values()])}"
             )

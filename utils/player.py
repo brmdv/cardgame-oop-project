@@ -1,4 +1,4 @@
-from card import Card
+from utils.card import Card
 from random import choice, shuffle
 from typing import List
 
