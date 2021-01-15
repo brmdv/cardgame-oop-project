@@ -1,6 +1,7 @@
 from utils.card import Card
 from random import choice, shuffle
 from typing import List
+from sys import exit
 
 
 class Player:
@@ -38,7 +39,9 @@ class Player:
         :return: A Card instance, the card that is played in this turn.
         """
         # pick a card
-        if not interactive:
+        if (
+            not interactive or self.number_of_cards == 1
+        ):  # when only 1 card left, always skip choosing prompt
             picked_card = choice(self.cards)
         else:
             # interactive picking
@@ -58,8 +61,12 @@ class Player:
                         )
                     ]
                     break
+                except KeyboardInterrupt:
+                    # stop game
+                    print("Game interrupted, exit.")
+                    exit()
                 except:
-                    # user didnt enter correct index
+                    # user didn't enter correct index
                     print("Incorrect number, try again.")
                     continue
 
