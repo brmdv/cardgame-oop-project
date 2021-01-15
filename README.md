@@ -4,12 +4,13 @@ This is an exercise project, for practicing object-oriented programming in Pytho
 
 In the basic "*must-have version*", a game just consists of distributing a full, shuffles deck of cards between all players and letting them play one card turn-by-turn until all cards are used. 
 
-Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have`) . These include:
+Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have`). These include:
 
 - Each player has a score, and gets 50 point for each round with the highest card. At the end of the game, the results are printed in order.
-- 
+- Arbitrary gameover condition: if a player gets 500 points, the game ends.
+- Interactive mode, where every player can choose which card to play every round.
 
-A detailed description of the assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
+A detailed description of the complete assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
 
 ## Project file structure
 
@@ -45,7 +46,7 @@ A detailed description of the assigment can be read [here](https://github.com/be
 
 ## How a game is played
 
-Each game takes place inside a `Board` instance. In *main.py* an example game takes place between four randomly-named players. 
+Each game takes place inside a `Board` instance. In *main.py* an example game is played between four randomly-named players. 
 
 1. A `Board` is initialised with players. 
 2. A new deck is created and shuffled. Then it is distrubuted between all players. This is done card by card, so if the cards are not neatly divisible over the players, the last players get fewer cards.
