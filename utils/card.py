@@ -63,3 +63,8 @@ class Card(Symbol):
 
     def __str__(self) -> str:
         return super().__str__() + self.value
+
+    def __lt__(self, other) -> bool:
+        """Compare cards by value."""
+        values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        return values.index(self.value) < values.index(other.value)
