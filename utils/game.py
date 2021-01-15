@@ -1,6 +1,6 @@
 from utils.player import Player, Deck
 from utils.card import Card
-from typing import List, Dict
+from typing import List, Dict, OrderedDict
 
 
 class Board:
@@ -64,6 +64,17 @@ class Board:
             print(f"\t{len(self.history_cards)} cards played before this turn.")
             print("")  # print empty line for readabilty
             self.turn_count += 1
+
+        # select game winner and print scores
+        results = OrderedDict()
+        for player in self.players:
+            if player.score in results:
+                results[player.score].append(str(player))
+            else:
+                results[player.score] = [str(player)]
+        print("Game over")
+        for i, score in enumerate(sorted(results.keys())):
+            print(f"{i+1}. " + ", ".join(results[score]))
 
     def __str__(self) -> str:
         """

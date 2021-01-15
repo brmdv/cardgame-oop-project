@@ -22,6 +22,7 @@ class Player:
         self.turn_count = 0
         self.history: List[Card] = []
         self.name = name
+        self.score = 0
         # Assign autoincrementing player number
         self.player_number = Player.player_count
         Player.player_count += 1
@@ -56,6 +57,7 @@ class Player:
     def number_of_cards(self) -> int:
         """Number of cards in player's hand."""
         return len(self.cards)
+
 
 class Deck:
     """A deck of cards."""
