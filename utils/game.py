@@ -56,6 +56,12 @@ class Board:
                 current_card = current_player.play()
                 self.active_cards[current_player] = current_card
 
+            # Give highest card(s) of round +50 points
+            winning_value = max(self.active_cards.values()).value
+            for player in self.active_cards:
+                if self.active_cards[player].value == winning_value:
+                    player.score += 50
+
             # end of turn bookkeeping
             print(f"Turn {self.turn_count} done:")
             print(
@@ -73,8 +79,8 @@ class Board:
             else:
                 results[player.score] = [str(player)]
         print("Game over")
-        for i, score in enumerate(sorted(results.keys())):
-            print(f"{i+1}. " + ", ".join(results[score]))
+        for i, score in enumerate(sorted(results.keys())[::-1]):
+            print(f"{i+1}. {score:>3} PTS: " + ", ".join(results[score]))
 
     def __str__(self) -> str:
         """
