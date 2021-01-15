@@ -26,12 +26,14 @@ class Board:
         # Create or reuse deck
         self.deck: Deck = Deck() if deck is None else deck
 
-    def start_game(self):
+    def start_game(self, interactive=False):
         """Start and play a new game. If the internal Deck is empty, a new one
         will be created and shuffled. The deck is distributed over all players.
         Then every player plays in turns until all cards are used. A summary of
         every turn is printed.
-        """
+
+        :param interactive: If set to True, each player can choose which card
+                            to play. Defaults to False."""
 
         # if deck is empty, fill and shuffle
         if len(self.deck.cards) == 0:
@@ -54,7 +56,7 @@ class Board:
                 if current_player.number_of_cards == 0:
                     continue
                 # play new card
-                current_card = current_player.play()
+                current_card = current_player.play(interactive=interactive)
                 self.active_cards[current_player] = current_card
 
             # Give highest card(s) of round +50 points

@@ -28,16 +28,41 @@ class Player:
         self.player_number = Player.player_count
         Player.player_count += 1
 
-    def play(self) -> Card:
+    def play(self, interactive=False) -> Card:
         """Play a turn. This method will return a random card from the player's
         hand, which is then added to the history and removed from the hand. A
         summary will be printed, in the form:
         {PLAYER'S NAME} ({TURN}) played: ({CARD COUNT}) {CARD}
 
+        :param interactive: If set to True, player can choose which card to play.
         :return: A Card instance, the card that is played in this turn.
         """
+        # pick a card
+        if not interactive:
+            picked_card = choice(self.cards)
+        else:
+            # interactive picking
+            while True:
+                #  make sure player chooses valid index with try/except
+                try:
+                    picked_card = self.cards[
+                        int(
+                            input(
+                                str(self)
+                                + ", choose card: "
+                                + " ".join(
+                                    [f"{card}:{i}" for i, card in enumerate(self.cards)]
+                                )
+                                + "  "
+                            )
+                        )
+                    ]
+                    break
+                except:
+                    # user didnt enter correct index
+                    print("Incorrect number, try again.")
+                    continue
 
-        picked_card = choice(self.cards)
         self.history.append(picked_card)
         print(
             f"{str(self)} ({self.turn_count}) played: ({self.number_of_cards}) {str(picked_card)}"

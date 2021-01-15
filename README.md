@@ -8,6 +8,7 @@ Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have
 
 - Each player has a score, and gets 50 point for each round with the highest card. At the end of the game, the results are printed in order.
 - Arbitrary gameover condition: if a player gets 500 points, the game ends.
+- Interactive mode, where every player can choose which card to play every round.
 
 A detailed description of the assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
 
