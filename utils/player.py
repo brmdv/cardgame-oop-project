@@ -23,6 +23,7 @@ class Player:
         self.history: List[Card] = []
         self.name = name
         self.score = 0
+
         # Assign autoincrementing player number
         self.player_number = Player.player_count
         Player.player_count += 1

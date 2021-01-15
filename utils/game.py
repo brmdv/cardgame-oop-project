@@ -42,9 +42,10 @@ class Board:
         self.deck.distribute(self.players)
 
         # Game playing
-        # Play game as long as any player has any cards left
-        while any([player.number_of_cards > 0 for player in self.players]):
-
+        # Play game as long as any player has any cards left and no player has more than 500 points
+        while any([player.number_of_cards > 0 for player in self.players]) and all(
+            ([player.score < 500 for player in self.players])
+        ):
             for current_player in self.players:
                 # Update history with previous turn
                 if self.active_cards[current_player] is not None:
@@ -58,21 +59,24 @@ class Board:
 
             # Give highest card(s) of round +50 points
             winning_value = max(self.active_cards.values()).value
+            round_winners = []  # keep winner namer for the bookkeeping part
             for player in self.active_cards:
                 if self.active_cards[player].value == winning_value:
                     player.score += 50
+                    round_winners.append(str(player))
 
             # end of turn bookkeeping
             print(f"Turn {self.turn_count} done:")
             print(
                 f"\tActive cards: {', '.join([str(card) for card in self.active_cards.values()])}"
             )
+            print("\t" + " ".join([f"{name}+50" for name in round_winners]))
             print(f"\t{len(self.history_cards)} cards played before this turn.")
-            print("")  # print empty line for readabilty
+            print()  # print empty line for readabilty
             self.turn_count += 1
 
         # select game winner and print scores
-        results = OrderedDict()
+        results = {}
         for player in self.players:
             if player.score in results:
                 results[player.score].append(str(player))

@@ -7,7 +7,7 @@ In the basic "*must-have version*", a game just consists of distributing a full,
 Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have`) . These include:
 
 - Each player has a score, and gets 50 point for each round with the highest card. At the end of the game, the results are printed in order.
-- 
+- Arbitrary gameover condition: if a player gets 500 points, the game ends.
 
 A detailed description of the assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
 
