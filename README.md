@@ -4,7 +4,10 @@ This is an exercise project, for practicing object-oriented programming in Pytho
 
 In the basic "*must-have version*", a game just consists of distributing a full, shuffles deck of cards between all players and letting them play one card turn-by-turn until all cards are used. 
 
-For the extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have`) 
+Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have`) . These include:
+
+- Each player has a score, and gets 50 point for each round with the highest card. At the end of the game, the results are printed in order.
+- 
 
 A detailed description of the assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
 
@@ -18,7 +21,6 @@ A detailed description of the assigment can be read [here](https://github.com/be
   * _player.py_
     * `Player`: A class for a card player. Can be given a `name`  and a list of cards.
       * `.play()`: Pick a random card from player's hand and returns it. 
-        
         
       * `.cards`: list with player's cards
       * `.history`: list with played card, in order
@@ -34,7 +36,6 @@ A detailed description of the assigment can be read [here](https://github.com/be
     * `Board`: This class describes a game that is played. It contains the players, a deck of cards and all other components to represent the playing of the game.
       * `.start_game()`: Play a full game. See next section.
         
-        
       * `.players`
       * `.turn_count`
       * `.active_cards`: Current cards in the turn.
@@ -47,15 +48,7 @@ A detailed description of the assigment can be read [here](https://github.com/be
 Each game takes place inside a `Board` instance. In *main.py* an example game takes place between four randomly-named players. 
 
 1. A `Board` is initialised with players. 
-
 2. A new deck is created and shuffled. Then it is distrubuted between all players. This is done card by card, so if the cards are not neatly divisible over the players, the last players get fewer cards.
-
 3. As long as any player as cards left, a round is played. 
-   
    1. First, the cards "on the table" (i.e. active cards) are moved to `.card_history`. 
-   
    2. Every player then picks a card, which is then tranferred to the `Board.active_cards`. 
-   
-   3. In the *nice-to-have* branch, a winner is picked.
-   
-   4. 
