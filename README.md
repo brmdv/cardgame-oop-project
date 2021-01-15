@@ -13,7 +13,7 @@ Extra "*nice-to-have*" additions (which can be found in the branch `nice-to-have
 A detailed description of the assigment can be read [here](https://github.com/becodeorg/ANT-Theano-2-27/blob/main/2.python/2.python_advanced/01.OOP/5.oop_project.md). 
 
 ## Project file structure
-
+For **nice-to-have** branch.
 * _utils/_
   * _card.py_
     * `Symbol`: This class describes a playing card symbol. Attributes are `icon` and `color`, the latter can be inferered from `icon`.
@@ -21,12 +21,13 @@ A detailed description of the assigment can be read [here](https://github.com/be
     * `Card(Symbol)`: Class that describes a playing card, by expanding `Symbol` with a playing card value.
   * _player.py_
     * `Player`: A class for a card player. Can be given a `name`  and a list of cards.
-      * `.play()`: Pick a random card from player's hand and returns it. 
+      * `.play(interactive=False)`: Pick a random card from player's hand and returns it. If `interactive` mode is on, the player gets prompted to choose a card. 
         
       * `.cards`: list with player's cards
       * `.history`: list with played card, in order
       * `.turn_count`
       * `.number_of_cards`: number of cards in hand
+	  * `.score`: The player's points
     * `Deck`: Class for a deck of cards. Can be initiated with provied list of cards, or be filled with a tradional deck of 52.
       * `.fill_deck()` : Fills the deck with 52 cards.
       * `.shuffle()`: Shuffles the deck randomly.
@@ -35,7 +36,7 @@ A detailed description of the assigment can be read [here](https://github.com/be
       * `.cards`: list with all cards
   * _game.py_
     * `Board`: This class describes a game that is played. It contains the players, a deck of cards and all other components to represent the playing of the game.
-      * `.start_game()`: Play a full game. See next section.
+      * `.start_game(interactive=False)`: Play a full game. See next section.
         
       * `.players`
       * `.turn_count`
@@ -50,7 +51,8 @@ Each game takes place inside a `Board` instance. In *main.py* an example game ta
 
 1. A `Board` is initialised with players. 
 2. A new deck is created and shuffled. Then it is distrubuted between all players. This is done card by card, so if the cards are not neatly divisible over the players, the last players get fewer cards.
-3. As long as any player as cards left, a round is played. 
+3. As long as any player as cards left, a round is played. If a player has more than 500 points, the game ends.
    1. First, the cards "on the table" (i.e. active cards) are moved to `.card_history`. 
    2. Every player then picks a card, which is then tranferred to the `Board.active_cards`. 
-   3. In the *nice-to-have* branch, a winner is picked.
+   3. In the *nice-to-have* branch, all players with highest card get 50 points to their account.
+4. When the game ends, the end score is printed for every player.
