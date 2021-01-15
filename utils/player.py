@@ -20,7 +20,6 @@ class Player:
         else:
             self.cards = []
         self.turn_count = 0
-        self.number_of_cards = 0
         self.history: List[Card] = []
         self.name = name
         # Assign autoincrementing player number
@@ -43,7 +42,6 @@ class Player:
         )
         self.cards.remove(picked_card)  # remove card from hand
         self.turn_count += 1  # increase player's turn count
-        self.number_of_cards += 1  # increase player's card count
 
         return picked_card
 
@@ -54,6 +52,10 @@ class Player:
         else:
             return f"Player {self.player_number}"
 
+    @property
+    def number_of_cards(self) -> int:
+        """Number of cards in player's hand."""
+        return len(self.cards)
 
 class Deck:
     """A deck of cards."""

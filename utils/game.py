@@ -43,14 +43,14 @@ class Board:
 
         # Game playing
         # Play game as long as any player has any cards left
-        while any([len(player.cards) > 0 for player in self.players]):
+        while any([player.number_of_cards > 0 for player in self.players]):
 
             for current_player in self.players:
                 # Update history with previous turn
                 if self.active_cards[current_player] is not None:
                     self.history_cards.append(self.active_cards[current_player])
                 # if player has no cards anymore, end turn
-                if len(current_player.cards) == 0:
+                if current_player.number_of_cards == 0:
                     continue
                 # play new card
                 current_card = current_player.play()
